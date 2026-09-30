@@ -54,6 +54,8 @@ The lab focuses on analyzing email headers, identifying suspicious indicators, e
 •⁠  ⁠The originating IP address was investigated using VirusTotal
 •⁠  ⁠16/91 security vendors flagged the investigated IP as malicious
 
+![VirusTotal IP Reputation Analysis](screenshots/sim-001-virustotal-ip.png)
+
 ### Analyst Conclusion
 
 The email was assessed as a phishing attempt based on multiple indicators, including brand impersonation, email authentication failure, suspicious sender infrastructure, and malicious IP reputation.

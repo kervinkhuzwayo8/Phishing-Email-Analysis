@@ -1,60 +1,84 @@
-# Phishing Email Analysis Lab
+# 🛡️ Phishing Email Analysis Lab
 
-## Overview
-A hands-on SOC home lab project focused on analyzing real and simulated phishing emails, extracting IOCs, and mapping attacker techniques to MITRE ATT&CK.
+## 📌 Overview
 
-## Folder Structure
-```
-phishing-email-analysis/
-├── samples/
-│   ├── real/          # Real phishing samples from PhishTank
-│   └── simulated/     # Manually crafted .eml files
-├── analysis/          # Per-sample analysis reports
-├── iocs/              # Master IOC tracker
-├── tools/             # Python scripts
-└── README.md
-```
+This project demonstrates my hands-on experience investigating phishing emails from a SOC Analyst perspective.
 
-## Tools Used
-| Tool | Purpose |
-|---|---|
-| PhishTank | Source of real phishing samples |
-| MXToolbox WHOIS | Domain age and registrar lookup |
-| URLScan.io | URL sandbox and behavioral analysis |
-| VirusTotal | Multi-engine URL/IP reputation check |
-| Python | Automated header parsing and IOC extraction |
+The lab focuses on analyzing email headers, identifying suspicious indicators, extracting IOCs, using threat intelligence sources, determining severity, and documenting appropriate incident-response actions.
 
-## Samples Analyzed
-| ID | Type | Target Brand | Verdict | Date |
-|---|---|---|---|---|
-| phish_001 | Real | Allegro (Poland) | Phishing | 2026-03-14 |
-| phish_002 | Real | Gaming Platform (hitmantest.club) | Phishing | 2026-03-14 |
-| phish_003 | Real | Gaming Platform (hitmantest.club) | Phishing | 2026-03-14 |
-| sim_001 | Simulated | Microsoft | Phishing | 2026-03-14 |
-| sim_002 | Simulated | PayPal | Phishing | 2026-03-14 |
+## 🎯 Objectives
 
-## Key Findings
-- Identified 1-day-old domain impersonating Allegro using `.click` TLD
-- URLScan flagged phish_001 as malicious while VirusTotal returned 0/95 — demonstrates false negative risk on newly registered domains
-- Cloudflare used to mask real hosting infrastructure across multiple samples
-- phish_002 and phish_003 both returned clean on VirusTotal and URLScan despite being verified by PhishTank — further confirms false negative pattern
-- Simulated samples demonstrate typosquatting techniques (`micros0ft-verify.com`, `paypa1-secure-center.com`)
-- `/as.php` path in phish_003 identified as classic credential harvesting endpoint structure
+•⁠  ⁠Analyze suspicious phishing emails
+•⁠  ⁠Investigate email headers
+•⁠  ⁠Identify sender spoofing and domain impersonation
+•⁠  ⁠Analyze SPF, DKIM, and DMARC results
+•⁠  ⁠Extract Indicators of Compromise (IOCs)
+•⁠  ⁠Investigate suspicious domains and IP addresses
+•⁠  ⁠Use threat intelligence to enrich IOCs
+•⁠  ⁠Determine whether an email is benign, suspicious, or malicious
+•⁠  ⁠Document SOC findings and recommended actions
 
-## MITRE ATT&CK Techniques Covered
-| Technique | ID |
-|---|---|
-| Phishing: Spearphishing Link | T1566.002 |
-| Masquerading | T1036 |
-| Obtain Capabilities: Domains | T1583.001 |
-| Credential Harvesting | T1056 |
+## 🛠️ Tools & Technologies
 
-## Skills Demonstrated
-- Email header analysis (From, Reply-To, Return-Path, SPF, DKIM, DMARC)
-- Domain WHOIS investigation and domain age analysis
-- IOC extraction and structured documentation
-- Multi-tool cross-validation (VirusTotal, URLScan.io, MXToolbox)
-- False negative identification across security tools
-- Typosquatting and lookalike domain detection
-- Python scripting for automated header parsing and IOC extraction
-- MITRE ATT&CK mapping
+•⁠  ⁠VirusTotal
+•⁠  ⁠GitHub
+•⁠  ⁠Email Header Analysis
+•⁠  ⁠OSINT
+•⁠  ⁠Threat Intelligence
+•⁠  ⁠SPF / DKIM / DMARC
+
+## 🔍 Investigation Workflow
+
+1.⁠ ⁠Review the suspicious email
+2.⁠ ⁠Analyze the sender and Reply-To addresses
+3.⁠ ⁠Examine email headers
+4.⁠ ⁠Review SPF, DKIM, and DMARC authentication
+5.⁠ ⁠Extract domains, URLs, and IP addresses
+6.⁠ ⁠Investigate IOCs using threat intelligence
+7.⁠ ⁠Determine the email verdict and severity
+8.⁠ ⁠Recommend containment and remediation actions
+9.⁠ ⁠Document the investigation
+
+## 🚨 Case Study — SIM-001
+
+*Alert Type:* Phishing Email  
+*Verdict:* Phishing  
+*Severity:* High
+
+### Key Findings
+
+•⁠  ⁠Microsoft impersonation was observed
+•⁠  ⁠A lookalike domain was used
+•⁠  ⁠SPF authentication failed
+•⁠  ⁠Sender infrastructure contained inconsistencies
+•⁠  ⁠The originating IP address was investigated using VirusTotal
+•⁠  ⁠16/91 security vendors flagged the investigated IP as malicious
+
+### Analyst Conclusion
+
+The email was assessed as a phishing attempt based on multiple indicators, including brand impersonation, email authentication failure, suspicious sender infrastructure, and malicious IP reputation.
+
+### Recommended Actions
+
+•⁠  ⁠Quarantine the phishing email
+•⁠  ⁠Block identified malicious indicators
+•⁠  ⁠Search other mailboxes for similar messages
+•⁠  ⁠Determine whether the recipient clicked the phishing link
+•⁠  ⁠Reset credentials if credential exposure is suspected
+•⁠  ⁠Review authentication logs for suspicious sign-ins
+•⁠  ⁠Continue monitoring for related activity
+
+## 🧠 Skills Demonstrated
+
+•⁠  ⁠Phishing Analysis
+•⁠  ⁠SOC Alert Triage
+•⁠  ⁠IOC Analysis
+•⁠  ⁠Threat Intelligence
+•⁠  ⁠Email Security
+•⁠  ⁠Incident Response
+•⁠  ⁠Security Documentation
+•⁠  ⁠Analytical Thinking
+
+## ⚠️ Disclaimer
+
+This project was completed for educational and defensive cybersecurity purposes. Simulated samples are used where appropriate, and suspicious links are not intentionally accessed directly.
